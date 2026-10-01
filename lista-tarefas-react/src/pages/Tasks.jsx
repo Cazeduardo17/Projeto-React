@@ -1,6 +1,6 @@
 function Tasks() {
   return (
-    <main>
+    <main className="page">
       <h2>Tarefas</h2>
       <p>Área de tarefas.</p>
     </main>
