@@ -1,9 +1,9 @@
 import { useState } from "react";
-import TaskItem from "../components/TaskItem";
 import TaskForm from "../components/TaskForm";
+import TaskItem from "../components/TaskItem";
 
 function Tasks() {
-  const [tarefas] = useState([
+  const [tarefas, setTarefas] = useState([
     {
       id: 1,
       titulo: "Estudar React",
@@ -14,13 +14,22 @@ function Tasks() {
     },
   ]);
 
+  function adicionarTarefa(titulo) {
+    const novaTarefa = {
+      id: Date.now(),
+      titulo: titulo,
+    };
+
+    setTarefas((tarefasAtuais) => [...tarefasAtuais, novaTarefa]);
+  }
+
   return (
-    <main className="page">
+    <main>
       <h2>Tarefas</h2>
       <p>Área de tarefas.</p>
 
-      <TaskForm />
-      
+      <TaskForm onAdicionar={adicionarTarefa} />
+
       <ul>
         {tarefas.map((tarefa) => (
           <TaskItem key={tarefa.id} tarefa={tarefa} />
