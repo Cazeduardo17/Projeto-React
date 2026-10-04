@@ -7,10 +7,12 @@ function Tasks() {
     {
       id: 1,
       titulo: "Estudar React",
+      concluido: false,
     },
     {
       id: 2,
       titulo: "Fazer trabalho da faculdade",
+      concluida: false,
     },
   ]);
 
@@ -18,9 +20,18 @@ function Tasks() {
     const novaTarefa = {
       id: Date.now(),
       titulo: titulo,
+      concluida: false,
     };
 
     setTarefas((tarefasAtuais) => [...tarefasAtuais, novaTarefa]);
+  }
+
+  function concluirTarefa(id) {
+    setTarefas((tarefasAtuais) =>
+      tarefasAtuais.map((tarefa) =>
+        tarefa.id === id ? { ...tarefa, concluida: !tarefa.concluida } : tarefa,
+      ),
+    );
   }
 
   return (
@@ -32,7 +43,11 @@ function Tasks() {
 
       <ul>
         {tarefas.map((tarefa) => (
-          <TaskItem key={tarefa.id} tarefa={tarefa} />
+          <TaskItem
+            key={tarefa.id}
+            tarefa={tarefa}
+            onConcluir={concluirTarefa}
+          />
         ))}
       </ul>
     </main>
