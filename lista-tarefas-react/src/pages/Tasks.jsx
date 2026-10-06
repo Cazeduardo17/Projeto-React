@@ -1,29 +1,39 @@
 import { useEffect, useState } from "react";
-
 import TaskForm from "../components/TaskForm";
-
 import TaskItem from "../components/TaskItem";
+
+const tarefasIniciais = [
+  {
+    id: 1,
+    titulo: "Estudar React",
+    concluida: false,
+  },
+  {
+    id: 2,
+    titulo: "Fazer trabalho da faculdade",
+    concluida: false,
+  },
+];
 
 function Tasks() {
   const [tarefas, setTarefas] = useState(() => {
     const tarefasSalvas = localStorage.getItem("tarefas");
 
-    if (tarefasSalvas) {
-      return JSON.parse(tarefasSalvas);
+    return tarefasSalvas ? JSON.parse(tarefasSalvas) : tarefasIniciais;
+  });
+
+  const [filtro, setFiltro] = useState("todas");
+
+  const tarefasFiltradas = tarefas.filter((tarefa) => {
+    if (filtro === "pendentes") {
+      return !tarefa.concluida;
     }
 
-    return [
-      {
-        id: 1,
-        titulo: "Estudar React",
-        concluida: false,
-      },
-      {
-        id: 2,
-        titulo: "Fazer trabalho da faculdade",
-        concluida: false,
-      },
-    ];
+    if (filtro === "concluidas") {
+      return tarefa.concluida;
+    }
+
+    return true;
   });
 
   useEffect(() => {
@@ -55,14 +65,20 @@ function Tasks() {
   }
 
   return (
-    <main>
+    <main className="page">
       <h2>Tarefas</h2>
       <p>Área de tarefas.</p>
+
+      <div>
+        <button onClick={() => setFiltro("todas")}>Todas</button>
+        <button onClick={() => setFiltro("pendentes")}>Pendentes</button>
+        <button onClick={() => setFiltro("concluidas")}>Concluídas</button>
+      </div>
 
       <TaskForm onAdicionar={adicionarTarefa} />
 
       <ul>
-        {tarefas.map((tarefa) => (
+        {tarefasFiltradas.map((tarefa) => (
           <TaskItem
             key={tarefa.id}
             tarefa={tarefa}
