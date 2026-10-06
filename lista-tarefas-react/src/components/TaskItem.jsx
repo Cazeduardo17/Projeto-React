@@ -1,12 +1,17 @@
-function TaskItem({ tarefa, onConcluir }) {
+function TaskItem({ tarefa, onConcluir, onExcluir }) {
   return (
     <li>
-      {tarefa.titulo}
-      {tarefa.concluida && <span> - Concluída</span>}
+      <span>
+        {tarefa.titulo}
+
+        {tarefa.concluida && <span> - Concluída</span>}
+      </span>
 
       <button onClick={() => onConcluir(tarefa.id)}>
-        Concluir
+        {tarefa.concluida ? "Desfazer" : "Concluir"}
       </button>
+
+      <button onClick={() => onExcluir(tarefa.id)}> Excluir </button>
     </li>
   );
 }

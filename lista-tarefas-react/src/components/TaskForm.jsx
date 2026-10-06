@@ -2,13 +2,13 @@ import { useState } from "react";
 
 function TaskForm({ onAdicionar }) {
   const [titulo, setTitulo] = useState("");
-
   function handleSubmit(event) {
     event.preventDefault();
 
     if (titulo.trim() === "") {
       return;
     }
+
 
     onAdicionar(titulo);
 
