@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import TaskForm from "../components/TaskForm";
 import TaskItem from "../components/TaskItem";
+import PageContainer from "../components/PageContainer";
 
 const tarefasIniciais = [
   {
@@ -65,7 +66,7 @@ function Tasks() {
   }
 
   return (
-    <main className="page">
+    <PageContainer>
       <h2>Tarefas</h2>
       <p>Área de tarefas.</p>
 
@@ -77,17 +78,21 @@ function Tasks() {
 
       <TaskForm onAdicionar={adicionarTarefa} />
 
-      <ul>
-        {tarefasFiltradas.map((tarefa) => (
-          <TaskItem
-            key={tarefa.id}
-            tarefa={tarefa}
-            onConcluir={concluirTarefa}
-            onExcluir={excluirTarefa}
-          />
-        ))}
-      </ul>
-    </main>
+      {tarefasFiltradas.length === 0 ? (
+        <p>Nenhuma tarefa encontrada.</p>
+      ) : (
+        <ul>
+          {tarefasFiltradas.map((tarefa) => (
+            <TaskItem
+              key={tarefa.id}
+              tarefa={tarefa}
+              onConcluir={concluirTarefa}
+              onExcluir={excluirTarefa}
+            />
+          ))}
+        </ul>
+      )}
+    </PageContainer>
   );
 }
 

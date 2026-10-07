@@ -1,9 +1,11 @@
+import PageContainer from "../components/PageContainer";
+
 function Home() {
   return (
-    <main className="page">
+    <PageContainer>
       <h2>Início</h2>
       <p>Bem-vindo à Lista de Tarefas Acadêmicas.</p>
-    </main>
+    </PageContainer>
   );
 }
 

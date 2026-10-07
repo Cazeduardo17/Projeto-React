@@ -1,9 +1,11 @@
+import PageContainer from "../components/PageContainer";
+
 function About() {
   return (
-    <main className="page">
+    <PageContainer>
       <h2>Sobre</h2>
       <p>Projeto acadêmico de Lista de Tarefas.</p>
-    </main>
+    </PageContainer>
   );
 }
 
