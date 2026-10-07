@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TaskForm from "../components/TaskForm";
 import TaskItem from "../components/TaskItem";
 import PageContainer from "../components/PageContainer";
+import "./Tasks.css";
 
 const tarefasIniciais = [
   {
@@ -70,9 +71,11 @@ function Tasks() {
       <h2>Tarefas</h2>
       <p>Área de tarefas.</p>
 
-      <div>
+      <div className="task-filters">
         <button onClick={() => setFiltro("todas")}>Todas</button>
+
         <button onClick={() => setFiltro("pendentes")}>Pendentes</button>
+
         <button onClick={() => setFiltro("concluidas")}>Concluídas</button>
       </div>
 

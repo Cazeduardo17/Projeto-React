@@ -1,17 +1,21 @@
+import "./TaskItem.css";
+
 function TaskItem({ tarefa, onConcluir, onExcluir }) {
   return (
-    <li>
-      <span>
+    <li className={`task-item ${tarefa.concluida ? "concluida" : ""}`}>
+      <span className="task-title">
         {tarefa.titulo}
 
-        {tarefa.concluida && <span> - Concluída</span>}
+        {tarefa.concluida && <span className="task-status"> - Concluída</span>}
       </span>
 
-      <button onClick={() => onConcluir(tarefa.id)}>
-        {tarefa.concluida ? "Desfazer" : "Concluir"}
-      </button>
+      <div className="task-actions">
+        <button onClick={() => onConcluir(tarefa.id)}>
+          {tarefa.concluida ? "Desfazer" : "Concluir"}
+        </button>
 
-      <button onClick={() => onExcluir(tarefa.id)}> Excluir </button>
+        <button onClick={() => onExcluir(tarefa.id)}>Excluir</button>
+      </div>
     </li>
   );
 }

@@ -1,20 +1,30 @@
 .task-item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  padding: 10px;
-  margin-bottom: 8px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  align-items: center;
+  gap: 20px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
 }
 
-.task-acoes {
-  display: flex;
-  gap: 6px;
+.task-title {
+  font-size: 16px;
 }
 
-.concluida {
+.task-status {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.task-item.concluida .task-title {
   text-decoration: line-through;
-  opacity: 0.6;
+  opacity: 0.7;
+}
+
+.task-actions {
+  display: flex;
+  gap: 8px;
 }

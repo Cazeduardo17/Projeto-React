@@ -1,7 +1,9 @@
 import { useState } from "react";
+import "./TaskForm.css";
 
 function TaskForm({ onAdicionar }) {
   const [titulo, setTitulo] = useState("");
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -9,14 +11,13 @@ function TaskForm({ onAdicionar }) {
       return;
     }
 
-
     onAdicionar(titulo);
 
     setTitulo("");
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="task-form" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Digite uma tarefa"
